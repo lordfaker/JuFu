@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JuFu.Monster;
+using JuFu.Player;
 
 namespace JuFu.Controller
 {
@@ -28,7 +30,7 @@ namespace JuFu.Controller
 
         }
 
-        public void Start()
+        public void Start<P, M>() where P : JuFu.Player.Player, new() where M : JuFu.Monster.Monster
         {
 
         }
