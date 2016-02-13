@@ -23,6 +23,7 @@ namespace JuFu.Arena
             for (int i = 0; i < pitch.Length; i++)
             {
                 pitch[i] = new Field(i);
+                Children.Add(pitch[i]);
             }
 
             return this;
