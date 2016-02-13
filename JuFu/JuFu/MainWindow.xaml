@@ -16,23 +16,7 @@
         <TextBox x:Name="tbPlayerTwoName" HorizontalAlignment="Left" Height="23" Margin="115,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Player 2"/>
         <Label x:Name="lVersion" Content="Version: " HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" Width="54"/>
         <Label x:Name="lVersionCount" Content="0.0.1.0" HorizontalAlignment="Left" Margin="69,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.679,0.272" Width="69"/>
-        <Canvas x:Name="CanvasPitch" HorizontalAlignment="Left" Height="200" Margin="135,78,0,0" VerticalAlignment="Top" Width="250" Background="#FF5F5F5F"/>
-        <Button x:Name="bMove" Content="Move" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="54"/>
-        <Button x:Name="bFight" Content="Fight" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="54"/>
-        <Button x:Name="bMove_Copy" Content="Move" HorizontalAlignment="Left" Margin="453,78,0,0" VerticalAlignment="Top" Width="54"/>
-        <Button x:Name="bFight_Copy" Content="Fight" HorizontalAlignment="Left" Margin="453,103,0,0" VerticalAlignment="Top" Width="54"/>
-        <Grid HorizontalAlignment="Left" Height="198" Margin="69,78,0,0" VerticalAlignment="Top" Width="61">
-            <RadioButton x:Name="rb1" Content="1" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rb4" Content="4" HorizontalAlignment="Left" Margin="26,173,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rb2" Content="2" HorizontalAlignment="Left" Margin="26,63,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rb3" Content="3" HorizontalAlignment="Left" Margin="26,117,0,0" VerticalAlignment="Top"/>
-        </Grid>
-        <Grid HorizontalAlignment="Left" Height="198" Margin="390,76,0,0" VerticalAlignment="Top" Width="61">
-            <RadioButton x:Name="rb5" Content="1" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rb6" Content="4" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rb7" Content="2" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
-            <RadioButton x:Name="rb8" Content="3" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top"/>
-        </Grid>
+        <Canvas x:Name="CanvasPitch" HorizontalAlignment="Left" Height="200" Margin="10,73,0,0" VerticalAlignment="Top" Width="250" Background="#FF5F5F5F"/>
 
     </Grid>
 </Window>
