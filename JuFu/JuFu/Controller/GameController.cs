@@ -40,7 +40,8 @@ namespace JuFu.Controller
         }
         
 
-        public void NextRound()
+
+        public void Update()
         {
 
             RoundsPlayed++;
