@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JuFu.Arena;
+using JuFu.Controller;
 
 namespace JuFu.Monster
 {
     abstract class AbstractMonster : IMonster
     {
+        protected int Position { get; set; }
         protected int Strength { get; set; }
         protected int Health { get; set; }
         protected bool Moved;
-        protected bool IsAlive;
+        protected bool IsAlive = true;
         protected Field CurrentField;
         protected Field TargetField;
 
@@ -31,10 +34,24 @@ namespace JuFu.Monster
             switch (playerNumber)
             {
                 case 1:
-                    if (TargetField.IsSet) Fight();
+                    if (this.TargetField.IsSet)
+                    {
+                        Fight();
+                    }
+                    else
+                    {
+                        if (this.Position < GameController.PITCH_X) this.Position++;
+                    }
                     break;
                 case 2:
-                    if (TargetField.IsSet) Fight();
+                    if (this.TargetField.IsSet)
+                    {
+                        Fight();
+                    }
+                    else
+                    {
+                        if (this.Position > 0) this.Position--;
+                    }
                     break;
             }
         }
@@ -59,7 +76,7 @@ namespace JuFu.Monster
         /// </summary>
         public void Die()
         {
-            // Some kill procedure.
+            IsAlive = false;
         }
     }
 }
