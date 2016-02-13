@@ -8,7 +8,7 @@ namespace JuFu.Player
 {
     class Player
     {
-        public Player()
+        public Player(string name)
         {
 
         }

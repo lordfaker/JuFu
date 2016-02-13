@@ -5,23 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using JuFu.Monster;
 using JuFu.Player;
+using JuFu.Arena;
+
 
 namespace JuFu.Controller
 {
     class GameController
     {
-        private int _pitchX;
-        private int _pitchY;
+        
+        public const int PITCH_X = 5;
+        public const int PITCH_Y = 4;
+        
+        public int RoundsPlayed;
+        public bool PlayerOneTurn;
 
-        public GameController(string playerOne, string PlayerTwo, int gridX, int gridY)
+        public GameController(string playerOne, string PlayerTwo)
         {
-            _pitchX = gridX;
-            _pitchY = gridY;
-        }
-
-        public void SetPlayer()
-        {
-
+            Player.Player player1 = new Player.Player(playerOne);
+            Player.Player player2 = new Player.Player(PlayerTwo);
         }
 
         public void SetMonster()
@@ -29,20 +30,21 @@ namespace JuFu.Controller
 
         }
 
-        /*public void Start<P, M>() where P : JuFu.Player.Player, new() where M : JuFu.Monster.Monster
+        public void Start()
         {
 
         }
-        */
+        
 
         public void NextRound()
         {
 
+            RoundsPlayed++;
         }
 
-        public void Checkfield()
+        public void Checkfield(Field f)
         {
-
+            Field field = f;
         }
 
         public void CreatePitch()
