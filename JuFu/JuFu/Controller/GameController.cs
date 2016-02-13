@@ -37,8 +37,16 @@ namespace JuFu.Controller
 
         public void Start(Canvas canvasPitch)
         {
-            Pitch pitch = new Pitch();
-            canvasPitch.Children.Add(pitch.GetPitch());
+
+            double margin = 0.0d;
+            for (int i = 0; i < PITCH_Y; i++)
+            {
+                Pitch pitchLevel = new Pitch();
+                Canvas.SetTop(pitchLevel, margin);
+                canvasPitch.Children.Add(pitchLevel.GetPitch());
+                margin += 50.0d;
+            }
+            
         }
         
 

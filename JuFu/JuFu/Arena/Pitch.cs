@@ -19,11 +19,14 @@ namespace JuFu.Arena
 
         public Pitch GetPitch()
         {
+            double margin = 0.0d;
             Field[] pitch = new Field[GameController.PITCH_X];
             for (int i = 0; i < pitch.Length; i++)
             {
                 pitch[i] = new Field(i);
+                Canvas.SetLeft(pitch[i], margin);
                 Children.Add(pitch[i]);
+                margin += 50.0d;
             }
 
             return this;

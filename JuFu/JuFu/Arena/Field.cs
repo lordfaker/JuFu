@@ -27,6 +27,7 @@ namespace JuFu.Arena
             rectangle.Fill = new SolidColorBrush(Colors.DarkSeaGreen);
             rectangle.Width = 50;
             rectangle.Height = 50;
+            rectangle.Stroke = new SolidColorBrush(Colors.Black);
 
             base.Children.Add(rectangle);
         }
