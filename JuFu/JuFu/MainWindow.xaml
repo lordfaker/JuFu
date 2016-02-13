@@ -7,13 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="bStart" Content="Start" HorizontalAlignment="Left" Margin="432,264,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="bClose" Content="Close" HorizontalAlignment="Left" Margin="432,289,0,0" VerticalAlignment="Top" Width="75"/>
+        
+        <Button x:Name="bStart" Content="Start" HorizontalAlignment="Left" Margin="432,264,0,0" VerticalAlignment="Top" Width="75" Click="bStart_Click"/>
+        <Button x:Name="bClose" Content="Close" HorizontalAlignment="Left" Margin="432,289,0,0" VerticalAlignment="Top" Width="75" Click="bClose_Click"/>
         <Label x:Name="lPlayerOneName" Content="Player 1 Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
         <Label x:Name="lPlayerTwoName" Content="Player 2 Name" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="100"/>
         <TextBox x:Name="tbPlayerOneName" HorizontalAlignment="Left" Height="23" Margin="115,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Player 1"/>
         <TextBox x:Name="tbPlayerTwoName" HorizontalAlignment="Left" Height="23" Margin="115,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Player 2"/>
         <Label x:Name="lJuFu" Content="JuFu" HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Width="288" Height="186" Background="{x:Null}" FontSize="96" FontFamily="Gill Sans Nova Ultra Bold"/>
+        <Label x:Name="lVersion" Content="Version: " HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label x:Name="lVersionCount" Content="0.0.0.1" HorizontalAlignment="Left" Margin="69,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.679,0.272" Width="69"/>
 
     </Grid>
 </Window>

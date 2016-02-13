@@ -13,7 +13,7 @@ namespace JuFu.Controller
         private int _pitchX;
         private int _pitchY;
 
-        public GameController(string[] player, int gridX, int gridY)
+        public GameController(string playerOne, string PlayerTwo, int gridX, int gridY)
         {
             _pitchX = gridX;
             _pitchY = gridY;
@@ -29,11 +29,11 @@ namespace JuFu.Controller
 
         }
 
-        public void Start<P, M>() where P : JuFu.Player.Player, new() where M : JuFu.Monster.Monster
+        /*public void Start<P, M>() where P : JuFu.Player.Player, new() where M : JuFu.Monster.Monster
         {
 
         }
-
+        */
         public void NextRound()
         {
 
