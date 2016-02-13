@@ -17,7 +17,6 @@ namespace JuFu.Controller
         {
             _pitchX = gridX;
             _pitchY = gridY;
-
         }
 
         public void SetPlayer()
