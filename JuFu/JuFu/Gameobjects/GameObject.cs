@@ -8,5 +8,9 @@ namespace JuFu.Gameobjects
 {
     class GameObject
     {
+        public GameObject()
+        {
+
+        }
     }
 }

@@ -7,7 +7,6 @@ using JuFu.Monster;
 using JuFu.Player;
 using JuFu.Arena;
 
-
 namespace JuFu.Controller
 {
     class GameController
@@ -23,11 +22,16 @@ namespace JuFu.Controller
         {
             Player.Player player1 = new Player.Player(playerOne);
             Player.Player player2 = new Player.Player(PlayerTwo);
+
+            for (int i=0; i < PITCH_Y; i++)
+            {
+                player1.MonsterList.Add(new JuFu.Monster.Monster(5,5));
+            }
         }
 
         public void SetMonster()
         {
-
+            
         }
 
         public void Start()
