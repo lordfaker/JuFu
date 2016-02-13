@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JuFu.Monster
+namespace JuFu.Arena
 {
-    interface IMonster
+    class Field
     {
-        void Move(int playerNumber);
-
-        void Fight();
-
-        void Die();
+        public bool IsSet { get; set; }
+        public Monster.Monster Monster;
     }
 }
