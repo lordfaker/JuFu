@@ -32,13 +32,11 @@ namespace JuFu
             string playerOneName = tbPlayerOneName.Text;
             string playerTwoName = tbPlayerTwoName.Text;
 
-            // Set Pitch X Size, Get Pitch Y Size
-            int X = 5;
-            int Y = 4;
             
 
             // Start A New Game
-            GameController controller = new GameController(playerOneName, playerTwoName,X,Y);
+            GameController controller = new GameController(playerOneName, playerTwoName);
+            controller.Start();
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
