@@ -32,7 +32,6 @@ namespace JuFu
             string playerOneName = tbPlayerOneName.Text;
             string playerTwoName = tbPlayerTwoName.Text;
 
-            
 
             // Start A New Game
             GameController controller = new GameController(playerOneName, playerTwoName);
