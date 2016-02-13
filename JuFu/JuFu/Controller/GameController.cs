@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using JuFu.Monster;
 using JuFu.Player;
 using JuFu.Arena;
@@ -34,9 +35,10 @@ namespace JuFu.Controller
             
         }
 
-        public void Start()
+        public void Start(Canvas canvasPitch)
         {
-
+            Pitch pitch = new Pitch();
+            canvasPitch.Children.Add(pitch.GetPitch());
         }
         
 
