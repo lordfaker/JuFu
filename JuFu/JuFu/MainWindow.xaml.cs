@@ -36,6 +36,7 @@ namespace JuFu
 
             // Start A New Game
             GameController controller = new GameController(playerOneName, playerTwoName);
+            controller.Start();
         }
 
         private void bClose_Click(object sender, RoutedEventArgs e)
