@@ -10,7 +10,8 @@ namespace JuFu.Monster
     {
         public Monster(int strength, int health) : base(strength, health)
         {
-
+            
         }
+
     }
 }
