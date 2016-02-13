@@ -43,5 +43,15 @@ namespace JuFu
             // Close The Game
             this.Close();
         }
+
+        private void bMove_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bFight_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

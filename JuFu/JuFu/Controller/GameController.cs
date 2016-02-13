@@ -24,20 +24,19 @@ namespace JuFu.Controller
             Player.Player player1 = new Player.Player(playerOne);
             Player.Player player2 = new Player.Player(PlayerTwo);
 
-            for (int i=0; i < PITCH_Y; i++)
+            for (int i = 0; i < PITCH_Y; i++)
             {
-                player1.MonsterList.Add(new JuFu.Monster.Monster(5,5));
+                player1.MonsterList.Add(new JuFu.Monster.Monster(5, 5));
+            }
+            for (int i = 0; i < PITCH_Y; i++)
+            {
+                player2.MonsterList.Add(new JuFu.Monster.Monster(5, 5));
             }
         }
 
-        public void SetMonster()
-        {
-            
-        }
 
         public void Start(Canvas canvasPitch)
         {
-
             double margin = 0.0d;
             for (int i = 0; i < PITCH_Y; i++)
             {
@@ -46,14 +45,16 @@ namespace JuFu.Controller
                 canvasPitch.Children.Add(pitchLevel.GetPitch());
                 margin += 50.0d;
             }
+
             
+
         }
         
 
 
         public void NextRound()
         {
-
+            
             RoundsPlayed++;
         }
 
@@ -62,9 +63,5 @@ namespace JuFu.Controller
             Field field = f;
         }
 
-        public void CreatePitch()
-        {
-            
-        }
     }
 }
