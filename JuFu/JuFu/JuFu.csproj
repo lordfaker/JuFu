@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Arena\Field.cs" />
     <Compile Include="Controller\GameController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -72,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Monster\AbstractMonster.cs" />
     <Compile Include="Monster\IMonster.cs" />
+    <Compile Include="Monster\Monster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace JuFu.Monster
 {
-    interface IMonster
+    class Monster : AbstractMonster
     {
-        void Move(int playerNumber);
-
-        void Fight();
-
-        void Die();
+        public Monster(int strength, int health) : base(strength, health)
+        {
+            
+        }
     }
 }
