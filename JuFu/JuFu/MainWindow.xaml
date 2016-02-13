@@ -15,8 +15,22 @@
         <TextBox x:Name="tbPlayerOneName" HorizontalAlignment="Left" Height="23" Margin="115,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Player 1"/>
         <TextBox x:Name="tbPlayerTwoName" HorizontalAlignment="Left" Height="23" Margin="115,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Player 2"/>
         <Label x:Name="lVersion" Content="Version: " HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" Width="54"/>
-        <Label x:Name="lVersionCount" Content="0.0.1.0" HorizontalAlignment="Left" Margin="69,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.679,0.272" Width="69"/>
+        <Label x:Name="lVersionCount" Content="0.0.1.1" HorizontalAlignment="Left" Margin="69,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.679,0.272" Width="69"/>
         <Canvas x:Name="CanvasPitch" HorizontalAlignment="Left" Height="200" Margin="10,73,0,0" VerticalAlignment="Top" Width="250" Background="#FF5F5F5F"/>
+        <Label x:Name="lPlayerTurn" Content="Player turn:" HorizontalAlignment="Left" Margin="240,13,0,0" VerticalAlignment="Top" Width="216" Height="54" FontFamily="Gill Sans Nova Ultra Bold" FontSize="26.667"/>
+        <Label x:Name="lPlayerTurnNumber" Content="1" HorizontalAlignment="Left" Margin="461,13,0,0" VerticalAlignment="Top" Width="46" Height="54" FontFamily="Impact" FontSize="29.333"/>
+        <Button x:Name="bMove" Content="Move" HorizontalAlignment="Left" Margin="432,73,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="bFight" Content="Fight" HorizontalAlignment="Left" Margin="432,98,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="lActionsLeft" Content="Actions left:" HorizontalAlignment="Left" Margin="265,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber" Content="3" HorizontalAlignment="Left" Margin="411,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeft_Copy" Content="Monster 1 health:" HorizontalAlignment="Left" Margin="265,100,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber_Copy" Content="5" HorizontalAlignment="Left" Margin="411,100,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeft_Copy1" Content="Monster 2 health:" HorizontalAlignment="Left" Margin="265,131,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber_Copy1" Content="5" HorizontalAlignment="Left" Margin="411,131,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeft_Copy2" Content="Monster 3 health:" HorizontalAlignment="Left" Margin="265,162,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber_Copy2" Content="5" HorizontalAlignment="Left" Margin="411,162,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeft_Copy3" Content="Monster 4 health:" HorizontalAlignment="Left" Margin="265,193,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber_Copy3" Content="5" HorizontalAlignment="Left" Margin="411,193,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
