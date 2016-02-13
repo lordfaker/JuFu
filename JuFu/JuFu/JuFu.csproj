@@ -64,6 +64,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Arena\Field.cs" />
+    <Compile Include="Arena\Pitch.cs" />
     <Compile Include="Controller\GameController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
