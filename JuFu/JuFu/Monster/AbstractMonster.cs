@@ -33,32 +33,20 @@ namespace JuFu.Monster
         /// Check if target field is free and move or fight.
         /// </summary>
         /// <param name="playerNumber"></param>
-        public virtual void Move(int playerNumber)
+        public virtual bool CanMove()
         {
-            switch (playerNumber)
+
+            if (this.TargetField.IsSet)
             {
-                case 1:
-                    if (this.TargetField.IsSet)
-                    {
-                        Fight();
-                    }
-                    else
-                    {
-                        if (this.Position < GameController.PITCH_X) this.Position++;
-                    }
-                    break;
-                case 2:
-                    if (this.TargetField.IsSet)
-                    {
-                        Fight();
-                    }
-                    else
-                    {
-                        if (this.Position > 0) this.Position--;
-                    }
-                    break;
+                return false;
+
+            }
+            else
+            {
+                return true;
             }
         }
+
 
         /// <summary>
         /// Get monster from and target field and calculate

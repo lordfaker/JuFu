@@ -20,7 +20,7 @@ namespace JuFu.Arena
         public Field(int index)
         {
             Index = index;
-
+            IsSet = false;
             base.Width = 50;
             base.Height = 50;
 

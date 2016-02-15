@@ -8,7 +8,7 @@ namespace JuFu.Monster
 {
     interface IMonster
     {
-        void Move(int playerNumber);
+        bool CanMove();
 
         void Fight();
 

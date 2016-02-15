@@ -19,7 +19,7 @@ namespace JuFu.Controller
         public Player.Player Player2;
         public int RoundsPlayed;
         public bool PlayerOneTurn;
-        Pitch pitchLevel;
+        Pitch[] pitchLevel = new Pitch[PITCH_Y];
 
         public GameController(string playerOne, string PlayerTwo)
         {
@@ -39,9 +39,9 @@ namespace JuFu.Controller
             double margin = 0.0d;
             for (int i = 0; i < PITCH_Y; i++)
             {
-                pitchLevel = new Pitch(Player1,Player2);
-                Canvas.SetTop(pitchLevel, margin);
-                canvasPitch.Children.Add(pitchLevel.GetPitch());
+                pitchLevel[i] = new Pitch(this);
+                Canvas.SetTop(pitchLevel[i], margin);
+                canvasPitch.Children.Add(pitchLevel[i].GetPitch());
                 margin += 50.0d;
             }
 
@@ -53,20 +53,27 @@ namespace JuFu.Controller
 
         public void Move()
         {
-
             RoundsPlayed++;
             Monster.Monster monster = this.Player1.MonsterList[0];
+
+
             Console.WriteLine("Object {0}", Player1.MonsterList[0].GetType());
             monster = Player1.MonsterList[0];
-            monster.TargetField = pitchLevel.fieldArray[monster.CurrentField.Index +1];
+            Console.WriteLine("Target field: {0}", monster.CurrentField.Index);
+            monster.TargetField = pitchLevel[0].FieldArray[monster.CurrentField.Index + 1];
+            monster.CurrentField = pitchLevel[0].FieldArray[monster.CurrentField.Index];
+            if (monster.CanMove())
+                {
 
-            Console.WriteLine("jetzt: {0}", monster.GetType());
-            //monster.Move(1);
-            Console.WriteLine("Target field: {0}", monster.TargetField.Index);
-            monster.CurrentField.Children.Remove(monster);
+                    // 
+                    Console.WriteLine("Target field: {0}", monster.TargetField.Index);
+                    monster.CurrentField.Children.Remove(monster);
+                    monster.TargetField.AddChildren(monster);
 
-            monster.TargetField.AddChildren(monster);
-            ;
+                    monster.CurrentField.Index++;
+
+            }
+            
             
 
                 
