@@ -15,12 +15,12 @@ namespace JuFu.Arena
         private Player.Player playerTwo;
         public Field[] FieldArray = new Field[GameController.PITCH_X];
 
-        public Pitch(GameController gayController) : base()
+        public Pitch(GameController gameController) : base()
         {
             base.Width = 50*GameController.PITCH_X;
             base.Height = 50;
-            this.playerOne = gayController.Player1;
-            this.playerTwo = gayController.Player2;
+            this.playerOne = gameController.Player1;
+            this.playerTwo = gameController.Player2;
             
         }
 
