@@ -10,10 +10,14 @@ namespace JuFu.Player
     class Player
     {
         public List<Monster.Monster> MonsterList = new List<Monster.Monster>();
+        public string Name;
+        public int ID;
 
-        public Player(string name)
+
+        public Player(string name, int iD)
         {
-
+            this.Name = name;
+            this.ID = iD;
         }
 
     }

@@ -21,6 +21,8 @@ namespace JuFu
     /// </summary>
     public partial class MainWindow : Window
     {
+        private GameController controller;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +36,7 @@ namespace JuFu
 
 
             // Start A New Game
-            GameController controller = new GameController(playerOneName, playerTwoName);
+            controller = new GameController(playerOneName, playerTwoName);
             controller.Start(CanvasPitch);
         }
 
@@ -46,7 +48,7 @@ namespace JuFu
 
         private void bMove_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.Move();
         }
 
         private void bFight_Click(object sender, RoutedEventArgs e)

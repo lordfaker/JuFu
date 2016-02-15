@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -12,7 +13,7 @@ namespace JuFu.Arena
 {
     class Field : Canvas
     {
-        public readonly int Index;
+        public int Index;
         public bool IsSet { get; set; }
         public Monster.Monster Monster { get; set; }
         
@@ -29,7 +30,14 @@ namespace JuFu.Arena
             rectangle.Height = 50;
             rectangle.Stroke = new SolidColorBrush(Colors.Black);
 
-            base.Children.Add(rectangle);
+             base.Children.Add(rectangle);
+        }
+
+        public void AddChildren(UIElement uiElement)
+        {
+            IsSet = true;
+            this.Monster = (Monster.Monster)uiElement;
+            base.Children.Add(uiElement);
         }
          
     }

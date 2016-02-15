@@ -15,35 +15,31 @@ namespace JuFu.Controller
         
         public const int PITCH_X = 5;
         public const int PITCH_Y = 4;
-        
+        public Player.Player Player1;
+        public Player.Player Player2;
         public int RoundsPlayed;
         public bool PlayerOneTurn;
+        Pitch pitchLevel;
 
         public GameController(string playerOne, string PlayerTwo)
         {
             // Create new instances of player - objects, assign name
-            Player.Player player1 = new Player.Player(playerOne);
-            Player.Player player2 = new Player.Player(PlayerTwo);
-
-            // Add monsters to players
-            for (int i = 0; i < PITCH_Y; i++)
-            {
-                player1.MonsterList.Add(new JuFu.Monster.Monster(5, 5));
-            }
-            for (int i = 0; i < PITCH_Y; i++)
-            {
-                player2.MonsterList.Add(new JuFu.Monster.Monster(5, 5));
-            }
+            this.Player1 = new Player.Player(playerOne,1);
+            this.Player2 = new Player.Player(PlayerTwo,2);
+                         
+            
         }
 
 
         public void Start(Canvas canvasPitch)
-        {
-            // Create pitch
+        { 
+
+
+            // Create pitch, Add monster
             double margin = 0.0d;
             for (int i = 0; i < PITCH_Y; i++)
             {
-                Pitch pitchLevel = new Pitch();
+                pitchLevel = new Pitch(Player1,Player2);
                 Canvas.SetTop(pitchLevel, margin);
                 canvasPitch.Children.Add(pitchLevel.GetPitch());
                 margin += 50.0d;
@@ -52,20 +48,28 @@ namespace JuFu.Controller
             
 
         }
-        
 
 
-        public void NextRound()
+
+        public void Move()
         {
-            int actions = 3;
-            /*
-            while (actions != 0)
-            {
 
+            RoundsPlayed++;
+            Monster.Monster monster = this.Player1.MonsterList[0];
+            Console.WriteLine("Object {0}", Player1.MonsterList[0].GetType());
+            monster = Player1.MonsterList[0];
+            monster.TargetField = pitchLevel.fieldArray[monster.CurrentField.Index +1];
 
-            }
-            */
-                RoundsPlayed++;
+            Console.WriteLine("jetzt: {0}", monster.GetType());
+            //monster.Move(1);
+            Console.WriteLine("Target field: {0}", monster.TargetField.Index);
+            monster.CurrentField.Children.Remove(monster);
+
+            monster.TargetField.AddChildren(monster);
+            ;
+            
+
+                
         }
 
         public void Checkfield(Field f)

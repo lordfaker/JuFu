@@ -6,23 +6,27 @@ using System.Text;
 using System.Threading.Tasks;
 using JuFu.Arena;
 using JuFu.Controller;
+using System.Windows.Controls;
 
 namespace JuFu.Monster
 {
-    abstract class AbstractMonster : IMonster
+    abstract class AbstractMonster : Canvas, IMonster 
     {
-        protected int Position { get; set; }
-        protected int Strength { get; set; }
-        protected int Health { get; set; }
-        protected bool Moved;
-        protected bool IsAlive = true;
-        protected Field CurrentField;
-        protected Field TargetField;
+        public int Position { get; set; }
+        public int Strength { get; set; }
+        public int Health { get; set; }
+        public bool Moved;
+        public Player.Player Player { get; set; }
+        public bool IsAlive = true;
+        public Field CurrentField;
+        public Field TargetField;
 
-        protected AbstractMonster(int strength, int health)
+        protected AbstractMonster(int strength, int health, Player.Player player)
         {
             this.Strength = strength;
             this.Health = health;
+            this.Player = player;
+
         }
 
         /// <summary>
