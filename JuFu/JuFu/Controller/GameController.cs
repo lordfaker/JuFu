@@ -21,9 +21,11 @@ namespace JuFu.Controller
 
         public GameController(string playerOne, string PlayerTwo)
         {
+            // Create new instances of player - objects, assign name
             Player.Player player1 = new Player.Player(playerOne);
             Player.Player player2 = new Player.Player(PlayerTwo);
 
+            // Add monsters to players
             for (int i = 0; i < PITCH_Y; i++)
             {
                 player1.MonsterList.Add(new JuFu.Monster.Monster(5, 5));
@@ -37,6 +39,7 @@ namespace JuFu.Controller
 
         public void Start(Canvas canvasPitch)
         {
+            // Create pitch
             double margin = 0.0d;
             for (int i = 0; i < PITCH_Y; i++)
             {
@@ -54,8 +57,15 @@ namespace JuFu.Controller
 
         public void NextRound()
         {
-            
-            RoundsPlayed++;
+            int actions = 3;
+            /*
+            while (actions != 0)
+            {
+
+
+            }
+            */
+                RoundsPlayed++;
         }
 
         public void Checkfield(Field f)
