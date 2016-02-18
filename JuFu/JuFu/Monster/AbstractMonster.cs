@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using JuFu.Arena;
 using JuFu.Controller;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace JuFu.Monster
 {
     abstract class AbstractMonster : Canvas, IMonster 
     {
-        public int Position { get; set; }
+        public Point Position { get; set; }
         public int Strength { get; set; }
         public int Health { get; set; }
         public bool Moved;
@@ -26,7 +27,6 @@ namespace JuFu.Monster
             this.Strength = strength;
             this.Health = health;
             this.Player = player;
-
         }
 
         /// <summary>
@@ -35,6 +35,8 @@ namespace JuFu.Monster
         /// <param name="playerNumber"></param>
         public virtual bool CanMove()
         {
+            if (this.TargetField == null)
+                return true;
 
             if (this.TargetField.IsSet)
             {
@@ -69,6 +71,16 @@ namespace JuFu.Monster
         public void Die()
         {
             IsAlive = false;
+        }
+
+        public void Select()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Deselect()
+        {
+            throw new NotImplementedException();
         }
     }
 }

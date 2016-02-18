@@ -30,7 +30,7 @@ namespace JuFu.Arena
             rectangle.Height = 50;
             rectangle.Stroke = new SolidColorBrush(Colors.Black);
 
-             base.Children.Add(rectangle);
+            base.Children.Add(rectangle);
         }
 
         public void AddChildren(UIElement uiElement)

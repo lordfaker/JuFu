@@ -20,5 +20,10 @@ namespace JuFu.Player
             this.ID = iD;
         }
 
+        public void DeselectAll()
+        {
+            foreach (var m in MonsterList)
+                m.Deselect();
+        }
     }
 }
