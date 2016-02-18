@@ -12,7 +12,7 @@ namespace JuFu.Player
         public List<Monster.Monster> MonsterList = new List<Monster.Monster>();
         public string Name;
         public int ID;
-
+        public int ActionsLeft { get; set; }
 
         public Player(string name, int iD)
         {

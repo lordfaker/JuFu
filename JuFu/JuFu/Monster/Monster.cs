@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace JuFu.Monster
@@ -15,22 +16,30 @@ namespace JuFu.Monster
     {
         public Rectangle Rectangle { get; set; }
         public bool Selected { get; set; }
+        private Brush animPlayer1Selected { get; set; }
+        private Brush animPlayer2Selected { get; set; }
+        private Brush player1Brush = new SolidColorBrush(Colors.Blue);
+        private Brush player2Brush = new SolidColorBrush(Colors.Red);
 
         public Monster(int strength, int health, Player.Player player) : base(strength, health, player)
         {
             Rectangle = new Rectangle();
 
-            if(player.ID ==1)
+            animPlayer1Selected = CreateAnimBrush(Colors.DarkSeaGreen, Brushes.Azure.Color, 0.5);
+            animPlayer2Selected = CreateAnimBrush(Colors.DarkSeaGreen, Brushes.Beige.Color, 0.5);
+
+            if (player.ID == 1)
             {
-                this.Rectangle.Fill = new SolidColorBrush(Colors.Blue);
+                this.Rectangle.Fill = player1Brush;
+                this.Rectangle.Stroke = animPlayer1Selected;
             }
             else
             {
-                this.Rectangle.Fill = new SolidColorBrush(Colors.Red);
+                this.Rectangle.Fill = player2Brush;
+                this.Rectangle.Stroke = animPlayer2Selected;
             }
             this.Rectangle.Width = 40;
             this.Rectangle.Height = 40;
-            this.Rectangle.Stroke = Brushes.Azure;
             this.Rectangle.StrokeThickness = 0;
 
             if (this.CurrentField != null)
@@ -45,6 +54,8 @@ namespace JuFu.Monster
             }
 
             base.Children.Add(this.Rectangle);
+
+            
         }
 
         public new void Select()
@@ -57,6 +68,22 @@ namespace JuFu.Monster
         {
             this.Rectangle.StrokeThickness = 0;
             this.Selected = false;
+        }
+
+        private Brush CreateAnimBrush(Color fromColor, Color toColor, double seconds)
+        {
+
+            ColorAnimation ani = new ColorAnimation();
+            ani.From = fromColor;
+            ani.To = toColor;
+            ani.RepeatBehavior = RepeatBehavior.Forever;
+            ani.Duration = new Duration(TimeSpan.FromSeconds(seconds));
+            ani.AutoReverse = true;
+
+            SolidColorBrush brush = new SolidColorBrush(fromColor);
+            brush.BeginAnimation(SolidColorBrush.ColorProperty, ani);
+
+            return brush;
         }
     }
 }

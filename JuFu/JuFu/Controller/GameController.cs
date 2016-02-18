@@ -31,8 +31,6 @@ namespace JuFu.Controller
             // Create new instances of player - objects, assign name
             this.Player1 = new Player.Player(playerOne,1);
             this.Player2 = new Player.Player(PlayerTwo,2);
-                         
-            
         }
 
 
@@ -48,9 +46,9 @@ namespace JuFu.Controller
                 Canvas.SetTop(pitchLevel[i], margin);
                 canvasPitch.Children.Add(pitchLevel[i].GetPitch());
                 margin += 50.0d;
-
-                
             }
+
+            Console.Write(canvasPitch.Parent);
         }
 
 
