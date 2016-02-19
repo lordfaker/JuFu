@@ -17,8 +17,8 @@
         <Label x:Name="lVersion" Content="Version: " HorizontalAlignment="Left" Margin="10,283,0,0" VerticalAlignment="Top" Width="54"/>
         <Label x:Name="lVersionCount" Content="0.1.0.0" HorizontalAlignment="Left" Margin="69,283,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.679,0.272" Width="69"/>
         <Canvas x:Name="CanvasPitch" HorizontalAlignment="Left" Height="200" Margin="10,73,0,0" VerticalAlignment="Top" Width="250" Background="#FF5F5F5F" MouseDown="CanvasPitch_MouseDown"/>
-        <Label x:Name="lPlayerTurn" Content="Player turn:" HorizontalAlignment="Left" Margin="305,13,0,0" VerticalAlignment="Top" Width="151" Height="54" FontFamily="Gill Sans Nova Ultra Bold" FontSize="26.667"/>
-        <Label x:Name="lPlayerTurnNumber" Content="1" HorizontalAlignment="Left" Margin="461,13,0,0" VerticalAlignment="Top" Width="46" Height="54" FontFamily="Impact" FontSize="29.333"/>
+        <Label x:Name="lPlayerTurn" Content="Player turn:" HorizontalAlignment="Left" Margin="305,13,0,0" VerticalAlignment="Top" Width="151" Height="54" FontFamily="Harlow Solid Italic" FontSize="26.667"/>
+        <Label x:Name="lPlayerTurnNumber" Content="1" HorizontalAlignment="Left" Margin="461,13,0,0" VerticalAlignment="Top" Width="46" Height="54" FontFamily="Magneto" FontSize="29.333"/>
         <Button x:Name="bMove" Content="Move" HorizontalAlignment="Left" Margin="432,73,0,0" VerticalAlignment="Top" Width="75" Click="bMove_Click"/>
         <Button x:Name="bFight" Content="Fight" HorizontalAlignment="Left" Margin="432,98,0,0" VerticalAlignment="Top" Width="75" Click="bFight_Click"/>
         <Label x:Name="lActionsLeft" Content="Actions left:" HorizontalAlignment="Left" Margin="265,72,0,0" VerticalAlignment="Top"/>

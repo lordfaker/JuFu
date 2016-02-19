@@ -44,8 +44,8 @@ namespace JuFu
 
         private void load()
         {
-            cPlayer1Color.Background = new SolidColorBrush(Colors.Blue);
-            cPlayer2Color.Background = new SolidColorBrush(Colors.Red);
+            cPlayer1Color.Background = Brushes.Blue;
+            cPlayer2Color.Background = Brushes.Red;
 
             picker1List = new List<Canvas>();
             picker2List = new List<Canvas>();
@@ -95,42 +95,9 @@ namespace JuFu
             picker1List.Add(cPicker1ColorRed);
             gMainGrid.Children.Add(cPicker1ColorRed);
 
-            cPicker2ColorBlue = new Canvas();
-            cPicker2ColorBlue.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker2ColorBlue.Margin = new Thickness(265, 45, 0, 0);
-            cPicker2ColorBlue.VerticalAlignment = VerticalAlignment.Top;
-            cPicker2ColorBlue.Width = 20;
-            cPicker2ColorBlue.Height = 23;
-            cPicker2ColorBlue.Background = Brushes.Blue;
-            cPicker2ColorBlue.Visibility = Visibility.Hidden;
-            cPicker2ColorBlue.MouseDown += cPicker2Select_MouseDown;
-            picker2List.Add(cPicker2ColorBlue);
-            gMainGrid.Children.Add(cPicker2ColorBlue);
-            cPicker2ColorGreen = new Canvas();
-            cPicker2ColorGreen.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker2ColorGreen.Margin = new Thickness(290, 45, 0, 0);
-            cPicker2ColorGreen.VerticalAlignment = VerticalAlignment.Top;
-            cPicker2ColorGreen.Width = 20;
-            cPicker2ColorGreen.Height = 23;
-            cPicker2ColorGreen.Background = Brushes.Green;
-            cPicker2ColorGreen.Visibility = Visibility.Hidden;
-            cPicker2ColorGreen.MouseDown += cPicker2Select_MouseDown;
-            picker2List.Add(cPicker2ColorGreen);
-            gMainGrid.Children.Add(cPicker2ColorGreen);
-            cPicker2ColorOrange = new Canvas();
-            cPicker2ColorOrange.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker2ColorOrange.Margin = new Thickness(315, 45, 0, 0);
-            cPicker2ColorOrange.VerticalAlignment = VerticalAlignment.Top;
-            cPicker2ColorOrange.Width = 20;
-            cPicker2ColorOrange.Height = 23;
-            cPicker2ColorOrange.Background = Brushes.Orange;
-            cPicker2ColorOrange.Visibility = Visibility.Hidden;
-            cPicker2ColorOrange.MouseDown += cPicker2Select_MouseDown;
-            picker2List.Add(cPicker2ColorOrange);
-            gMainGrid.Children.Add(cPicker2ColorOrange);
             cPicker2ColorRed = new Canvas();
             cPicker2ColorRed.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker2ColorRed.Margin = new Thickness(340, 45, 0, 0);
+            cPicker2ColorRed.Margin = new Thickness(265, 45, 0, 0);
             cPicker2ColorRed.VerticalAlignment = VerticalAlignment.Top;
             cPicker2ColorRed.Width = 20;
             cPicker2ColorRed.Height = 23;
@@ -139,6 +106,42 @@ namespace JuFu
             cPicker2ColorRed.MouseDown += cPicker2Select_MouseDown;
             picker2List.Add(cPicker2ColorRed);
             gMainGrid.Children.Add(cPicker2ColorRed);
+            cPicker2ColorOrange = new Canvas();
+            cPicker2ColorOrange.HorizontalAlignment = HorizontalAlignment.Left;
+            cPicker2ColorOrange.Margin = new Thickness(290, 45, 0, 0);
+            cPicker2ColorOrange.VerticalAlignment = VerticalAlignment.Top;
+            cPicker2ColorOrange.Width = 20;
+            cPicker2ColorOrange.Height = 23;
+            cPicker2ColorOrange.Background = Brushes.Orange;
+            cPicker2ColorOrange.Visibility = Visibility.Hidden;
+            cPicker2ColorOrange.MouseDown += cPicker2Select_MouseDown;
+            picker2List.Add(cPicker2ColorOrange);
+            gMainGrid.Children.Add(cPicker2ColorOrange);
+            cPicker2ColorGreen = new Canvas();
+            cPicker2ColorGreen.HorizontalAlignment = HorizontalAlignment.Left;
+            cPicker2ColorGreen.Margin = new Thickness(315, 45, 0, 0);
+            cPicker2ColorGreen.VerticalAlignment = VerticalAlignment.Top;
+            cPicker2ColorGreen.Width = 20;
+            cPicker2ColorGreen.Height = 23;
+            cPicker2ColorGreen.Background = Brushes.Green;
+            cPicker2ColorGreen.Visibility = Visibility.Hidden;
+            cPicker2ColorGreen.MouseDown += cPicker2Select_MouseDown;
+            picker2List.Add(cPicker2ColorGreen);
+            gMainGrid.Children.Add(cPicker2ColorGreen);
+            cPicker2ColorBlue = new Canvas();
+            cPicker2ColorBlue.HorizontalAlignment = HorizontalAlignment.Left;
+            cPicker2ColorBlue.Margin = new Thickness(340, 45, 0, 0);
+            cPicker2ColorBlue.VerticalAlignment = VerticalAlignment.Top;
+            cPicker2ColorBlue.Width = 20;
+            cPicker2ColorBlue.Height = 23;
+            cPicker2ColorBlue.Background = Brushes.Blue;
+            cPicker2ColorBlue.Visibility = Visibility.Hidden;
+            cPicker2ColorBlue.MouseDown += cPicker2Select_MouseDown;
+            picker2List.Add(cPicker2ColorBlue);
+            gMainGrid.Children.Add(cPicker2ColorBlue);
+            
+            
+            
         }
 
         private void bStart_Click(object sender, RoutedEventArgs e)
@@ -149,8 +152,7 @@ namespace JuFu
 
 
             // Start A New Game
-            controller = new GameController(playerOneName, playerTwoName);
-            controller.parantWindow = this;
+            controller = new GameController(this, playerOneName, playerTwoName);
             controller.Start(CanvasPitch);
 
         }
@@ -224,12 +226,27 @@ namespace JuFu
             }
         }
 
+        private void checkPlayersColorChoice()
+        {
+            if (cPlayer1Color.Background == cPlayer2Color.Background)
+            {
+                bStart.IsEnabled = false;
+                // write message to user?
+            }
+            else
+            {
+                bStart.IsEnabled = true;
+            }
+        }
+
         private void cPicker1Select_MouseDown(object sender, MouseButtonEventArgs e)
         {
             cPlayer1Color.Background = ((Canvas)sender).Background;
             if(controller != null)
                 controller.Player1.color = (SolidColorBrush)cPlayer1Color.Background;
             switchVisibility(picker1List);
+
+            checkPlayersColorChoice();
         }
 
         private void cPicker2Select_MouseDown(object sender, MouseButtonEventArgs e)
@@ -238,6 +255,8 @@ namespace JuFu
             if (controller != null)
                 controller.Player2.color = (SolidColorBrush)cPlayer2Color.Background;
             switchVisibility(picker2List);
+
+            checkPlayersColorChoice();
         }
 
         private void cPlayer1Color_MouseDown(object sender, MouseButtonEventArgs e)

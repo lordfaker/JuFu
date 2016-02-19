@@ -23,6 +23,7 @@ namespace JuFu.Monster
             Rectangle = new Rectangle();
 
             playerSelectedBrush = CreateAnimBrush(Colors.DarkSeaGreen, player.strokeColor.Color, 0.5);
+            playerBrush = player.color;
 
             this.Rectangle.Fill = playerBrush;
             this.Rectangle.Stroke = playerSelectedBrush;

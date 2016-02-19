@@ -9,6 +9,7 @@ using JuFu.Player;
 using JuFu.Arena;
 using System.Windows;
 using System.ComponentModel;
+using System.Windows.Media;
 
 namespace JuFu.Controller
 {
@@ -25,19 +26,23 @@ namespace JuFu.Controller
         public int CurrentPlayerID { get; set; }
 
         public Monster.Monster selectedMonster { get; set; }
-        public MainWindow parantWindow { get; set; }
+        public MainWindow parentWindow { get; set; }
 
-        public GameController(string playerOne, string PlayerTwo)
+        public GameController(MainWindow parentWindow, string playerOne, string PlayerTwo)
         {
             // Create new instances of player - objects, assign name
             this.Player1 = new Player.Player(playerOne,1);
             this.Player2 = new Player.Player(PlayerTwo,2);
+            this.parentWindow = parentWindow;
+
+            this.Player1.color = (SolidColorBrush)parentWindow.cPlayer1Color.Background;
+            this.Player2.color = (SolidColorBrush)parentWindow.cPlayer2Color.Background;
         }
 
 
         public void Start(Canvas canvasPitch)
         {
-            if (this.parantWindow == null)
+            if (this.parentWindow == null)
                 throw new NotImplementedException("GameController.parentWindow must be set.");
 
             
@@ -54,7 +59,7 @@ namespace JuFu.Controller
                 margin += 50.0d;
             }
 
-            
+            parentWindow.lPlayerTurnNumber.Foreground = Player1.color;
         }
 
 
@@ -93,13 +98,19 @@ namespace JuFu.Controller
                         default: break;
                     }
 
-                    RoundsPlayed++;
+                    RoundsPlayed++; // what is this var used for?
+
+
                 }
-            }
-            else
+                else
+                {
+                    // perhaps show some kind of message
+                }
+            } else
             {
-                // perhaps show some kind of message
+                throw new NotImplementedException("selectedMonster must not be null!");
             }
+            
             /*RoundsPlayed++;
             Monster.Monster monster = this.Player1.MonsterList[0];
 
@@ -162,9 +173,17 @@ namespace JuFu.Controller
         private void changePlayer()
         {
             if (CurrentPlayerID == 1)
+            {
                 CurrentPlayerID = 2;
+                parentWindow.lPlayerTurnNumber.Content = CurrentPlayerID;
+                parentWindow.lPlayerTurnNumber.Foreground = Player2.color;
+            }
             else
+            {
                 CurrentPlayerID = 1;
+                parentWindow.lPlayerTurnNumber.Content = CurrentPlayerID;
+                parentWindow.lPlayerTurnNumber.Foreground = Player1.color;
+            }
         }
 
     }

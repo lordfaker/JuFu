@@ -14,25 +14,27 @@ namespace JuFu.Player
         public string Name;
         public int ID;
         public int ActionsLeft { get; set; }
+        SolidColorBrush _color;
         public SolidColorBrush color
         {
-            get { return color; }
+            get { return _color; }
 
             set
             {
-                color = value;
+                _color = value;
 
-                if (color == Brushes.Blue)
+                if (_color == Brushes.Blue)
                     strokeColor = Brushes.Aqua;
-                if (color == Brushes.Green)
+                if (_color == Brushes.Green)
                     strokeColor = Brushes.LightGreen;
-                if (color == Brushes.Red)
+                if (_color == Brushes.Red)
                     strokeColor = Brushes.Beige;
-                if (color == Brushes.Orange)
+                if (_color == Brushes.Orange)
                     strokeColor = Brushes.Yellow;
 
             }
         }
+
         public SolidColorBrush strokeColor { get; private set; }
 
         public Player(string name, int iD)
