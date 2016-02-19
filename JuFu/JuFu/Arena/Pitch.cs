@@ -21,7 +21,10 @@ namespace JuFu.Arena
             base.Height = 50;
             this.playerOne = gameController.Player1;
             this.playerTwo = gameController.Player2;
-            
+
+            for (var i = 0; i < FieldArray.Length; i++)
+                FieldArray[i] = new Field(i);
+                
         }
 
         public Pitch GetPitch()
@@ -32,7 +35,6 @@ namespace JuFu.Arena
 
             for (int i = 0; i < FieldArray.Length; i++)
             {
-                FieldArray[i] = new Field(i);
                 
                 if (i == 0 || i == GameController.PITCH_X - 1)
                 {
@@ -42,6 +44,7 @@ namespace JuFu.Arena
                     {
                         Monster.Monster monster = new Monster.Monster(50, 100, playerOne);
                         monster.CurrentField = FieldArray[i];
+                        monster.TargetField = FieldArray[i + 1];
                         playerOne.MonsterList.Add(monster);
                         FieldArray[i].Monster = monster;
                         FieldArray[i].AddChildren(monster);
@@ -50,6 +53,7 @@ namespace JuFu.Arena
                     {
                         Monster.Monster monster = new Monster.Monster(50, 100, playerTwo);
                         monster.CurrentField = FieldArray[i];
+                        monster.TargetField = FieldArray[i - 1];
                         playerTwo.MonsterList.Add(monster);
                         FieldArray[i].Monster = monster;
                         FieldArray[i].AddChildren(monster);

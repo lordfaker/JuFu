@@ -13,5 +13,9 @@ namespace JuFu.Monster
         void Fight();
 
         void Die();
+
+        void Select();
+
+        void Deselect();
     }
 }

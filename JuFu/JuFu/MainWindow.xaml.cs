@@ -26,6 +26,9 @@ namespace JuFu
         public MainWindow()
         {
             InitializeComponent();
+
+            bMove.IsEnabled = false;
+            bFight.IsEnabled = false;
         }
 
         private void bStart_Click(object sender, RoutedEventArgs e)
@@ -54,6 +57,48 @@ namespace JuFu
         private void bFight_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CanvasPitch_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(sender.GetType() == typeof(Canvas))
+            {
+                Point hit = e.GetPosition((Canvas)sender);
+                HitTestResult result = VisualTreeHelper.HitTest((Canvas)sender, hit);
+                if(result != null)
+                {
+                    if (result.VisualHit is Rectangle)
+                    {
+                        Rectangle item = (Rectangle)result.VisualHit;
+                        if(item.Parent is Monster.Monster)
+                        {
+                            Monster.Monster monster = (Monster.Monster)item.Parent;
+
+                            if (!monster.Selected)
+                            {
+                                if (controller.SelectMonster(monster))
+                                {
+                                    if (!bMove.IsEnabled)
+                                        bMove.IsEnabled = true;
+                                    if (!bFight.IsEnabled)
+                                        bFight.IsEnabled = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            controller.SelectMonster(null);
+                          
+                            if (bMove.IsEnabled)
+                                bMove.IsEnabled = false;
+                            if (bFight.IsEnabled)
+                                bFight.IsEnabled = false;
+                        }
+                    }
+                }
+                //controller.SelectMonster(e.GetPosition((Canvas)sender));
+            }
+            
         }
     }
 }
