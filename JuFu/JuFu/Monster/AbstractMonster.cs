@@ -21,6 +21,7 @@ namespace JuFu.Monster
         public bool IsAlive = true;
         public Field CurrentField;
         public Field TargetField;
+        public bool Selected { get; set; }
 
         protected AbstractMonster(int strength, int health, Player.Player player)
         {
@@ -36,7 +37,7 @@ namespace JuFu.Monster
         public virtual bool CanMove()
         {
             if (this.TargetField == null)
-                return true;
+                throw new NotImplementedException("TargetField must not be null.");
 
             if (this.TargetField.IsSet)
             {
@@ -71,6 +72,7 @@ namespace JuFu.Monster
         public void Die()
         {
             IsAlive = false;
+            Selected = false;
         }
 
         public void Select()

@@ -25,6 +25,7 @@ namespace JuFu.Controller
         public int CurrentPlayerID { get; set; }
 
         public Monster.Monster selectedMonster { get; set; }
+        public MainWindow parantWindow { get; set; }
 
         public GameController(string playerOne, string PlayerTwo)
         {
@@ -36,6 +37,11 @@ namespace JuFu.Controller
 
         public void Start(Canvas canvasPitch)
         {
+            if (this.parantWindow == null)
+                throw new NotImplementedException("GameController.parentWindow must be set.");
+
+            
+
             CurrentPlayerID = 1;
 
             // Create pitch, Add monster
@@ -48,7 +54,7 @@ namespace JuFu.Controller
                 margin += 50.0d;
             }
 
-            Console.Write(canvasPitch.Parent);
+            
         }
 
 
@@ -94,8 +100,6 @@ namespace JuFu.Controller
             {
                 // perhaps show some kind of message
             }
-
-
             /*RoundsPlayed++;
             Monster.Monster monster = this.Player1.MonsterList[0];
 
@@ -113,10 +117,6 @@ namespace JuFu.Controller
 
                 monster.CurrentField.Index++;
             }*/
-            
-            
-
-                
         }
 
         public void Checkfield(Field f)
@@ -155,6 +155,16 @@ namespace JuFu.Controller
             }
 
             return false;
+        }
+
+        
+
+        private void changePlayer()
+        {
+            if (CurrentPlayerID == 1)
+                CurrentPlayerID = 2;
+            else
+                CurrentPlayerID = 1;
         }
 
     }

@@ -15,29 +15,18 @@ namespace JuFu.Monster
     class Monster : AbstractMonster
     {
         public Rectangle Rectangle { get; set; }
-        public bool Selected { get; set; }
-        private Brush animPlayer1Selected { get; set; }
-        private Brush animPlayer2Selected { get; set; }
-        private Brush player1Brush = new SolidColorBrush(Colors.Blue);
-        private Brush player2Brush = new SolidColorBrush(Colors.Red);
+        private Brush playerSelectedBrush { get; set; }
+        private Brush playerBrush { get; set; }
 
         public Monster(int strength, int health, Player.Player player) : base(strength, health, player)
         {
             Rectangle = new Rectangle();
 
-            animPlayer1Selected = CreateAnimBrush(Colors.DarkSeaGreen, Brushes.Azure.Color, 0.5);
-            animPlayer2Selected = CreateAnimBrush(Colors.DarkSeaGreen, Brushes.Beige.Color, 0.5);
+            playerSelectedBrush = CreateAnimBrush(Colors.DarkSeaGreen, player.strokeColor.Color, 0.5);
 
-            if (player.ID == 1)
-            {
-                this.Rectangle.Fill = player1Brush;
-                this.Rectangle.Stroke = animPlayer1Selected;
-            }
-            else
-            {
-                this.Rectangle.Fill = player2Brush;
-                this.Rectangle.Stroke = animPlayer2Selected;
-            }
+            this.Rectangle.Fill = playerBrush;
+            this.Rectangle.Stroke = playerSelectedBrush;
+
             this.Rectangle.Width = 40;
             this.Rectangle.Height = 40;
             this.Rectangle.StrokeThickness = 0;
@@ -68,6 +57,13 @@ namespace JuFu.Monster
         {
             this.Rectangle.StrokeThickness = 0;
             this.Selected = false;
+        }
+
+        public new void Die()
+        {
+            base.Die();
+
+
         }
 
         private Brush CreateAnimBrush(Color fromColor, Color toColor, double seconds)
