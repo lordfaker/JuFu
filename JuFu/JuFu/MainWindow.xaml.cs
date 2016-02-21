@@ -50,98 +50,56 @@ namespace JuFu
             picker1List = new List<Canvas>();
             picker2List = new List<Canvas>();
             // create color picker Elements
-            cPicker1ColorBlue = new Canvas();
-            cPicker1ColorBlue.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker1ColorBlue.Margin = new Thickness(265, 13, 0, 0);
-            cPicker1ColorBlue.VerticalAlignment = VerticalAlignment.Top;
-            cPicker1ColorBlue.Width = 20;
-            cPicker1ColorBlue.Height = 23;
-            cPicker1ColorBlue.Background = Brushes.Blue;
-            cPicker1ColorBlue.Visibility = Visibility.Hidden;
-            cPicker1ColorBlue.MouseDown += cPicker1Select_MouseDown;
+            // player1 blue
+            cPicker1ColorBlue = createColorPickerCanvas(Brushes.Blue, 265, 13, 0, 0, cPicker1Select_MouseDown);
             picker1List.Add(cPicker1ColorBlue);
             gMainGrid.Children.Add(cPicker1ColorBlue);
-            cPicker1ColorGreen = new Canvas();
-            cPicker1ColorGreen.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker1ColorGreen.Margin = new Thickness(290, 13, 0, 0);
-            cPicker1ColorGreen.VerticalAlignment = VerticalAlignment.Top;
-            cPicker1ColorGreen.Width = 20;
-            cPicker1ColorGreen.Height = 23;
-            cPicker1ColorGreen.Background = Brushes.Green;
-            cPicker1ColorGreen.Visibility = Visibility.Hidden;
-            cPicker1ColorGreen.MouseDown += cPicker1Select_MouseDown;
+            // player1 green
+            cPicker1ColorGreen = createColorPickerCanvas(Brushes.Green, 290, 13, 0, 0, cPicker1Select_MouseDown);
             picker1List.Add(cPicker1ColorGreen);
             gMainGrid.Children.Add(cPicker1ColorGreen);
-            cPicker1ColorOrange = new Canvas();
-            cPicker1ColorOrange.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker1ColorOrange.Margin = new Thickness(315, 13, 0, 0);
-            cPicker1ColorOrange.VerticalAlignment = VerticalAlignment.Top;
-            cPicker1ColorOrange.Width = 20;
-            cPicker1ColorOrange.Height = 23;
-            cPicker1ColorOrange.Background = Brushes.Orange;
-            cPicker1ColorOrange.Visibility = Visibility.Hidden;
-            cPicker1ColorOrange.MouseDown += cPicker1Select_MouseDown;
+            // player1 orange
+            cPicker1ColorOrange = createColorPickerCanvas(Brushes.Orange, 315, 13, 0, 0, cPicker1Select_MouseDown);
             picker1List.Add(cPicker1ColorOrange);
             gMainGrid.Children.Add(cPicker1ColorOrange);
-            cPicker1ColorRed = new Canvas();
-            cPicker1ColorRed.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker1ColorRed.Margin = new Thickness(340, 13, 0, 0);
-            cPicker1ColorRed.VerticalAlignment = VerticalAlignment.Top;
-            cPicker1ColorRed.Width = 20;
-            cPicker1ColorRed.Height = 23;
-            cPicker1ColorRed.Background = Brushes.Red;
-            cPicker1ColorRed.Visibility = Visibility.Hidden;
-            cPicker1ColorRed.MouseDown += cPicker1Select_MouseDown;
+            // player1 red
+            cPicker1ColorRed = createColorPickerCanvas(Brushes.Red, 340, 13, 0, 0, cPicker1Select_MouseDown);
             picker1List.Add(cPicker1ColorRed);
             gMainGrid.Children.Add(cPicker1ColorRed);
-
-            cPicker2ColorRed = new Canvas();
-            cPicker2ColorRed.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker2ColorRed.Margin = new Thickness(265, 45, 0, 0);
-            cPicker2ColorRed.VerticalAlignment = VerticalAlignment.Top;
-            cPicker2ColorRed.Width = 20;
-            cPicker2ColorRed.Height = 23;
-            cPicker2ColorRed.Background = Brushes.Red;
-            cPicker2ColorRed.Visibility = Visibility.Hidden;
-            cPicker2ColorRed.MouseDown += cPicker2Select_MouseDown;
+            // player2 red
+            cPicker2ColorRed = createColorPickerCanvas(Brushes.Red, 265, 45, 0, 0, cPicker2Select_MouseDown);
             picker2List.Add(cPicker2ColorRed);
             gMainGrid.Children.Add(cPicker2ColorRed);
-            cPicker2ColorOrange = new Canvas();
-            cPicker2ColorOrange.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker2ColorOrange.Margin = new Thickness(290, 45, 0, 0);
-            cPicker2ColorOrange.VerticalAlignment = VerticalAlignment.Top;
-            cPicker2ColorOrange.Width = 20;
-            cPicker2ColorOrange.Height = 23;
-            cPicker2ColorOrange.Background = Brushes.Orange;
-            cPicker2ColorOrange.Visibility = Visibility.Hidden;
-            cPicker2ColorOrange.MouseDown += cPicker2Select_MouseDown;
+            // player2 orange
+            cPicker2ColorOrange = createColorPickerCanvas(Brushes.Orange, 290, 45, 0, 0, cPicker2Select_MouseDown);
             picker2List.Add(cPicker2ColorOrange);
             gMainGrid.Children.Add(cPicker2ColorOrange);
-            cPicker2ColorGreen = new Canvas();
-            cPicker2ColorGreen.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker2ColorGreen.Margin = new Thickness(315, 45, 0, 0);
-            cPicker2ColorGreen.VerticalAlignment = VerticalAlignment.Top;
-            cPicker2ColorGreen.Width = 20;
-            cPicker2ColorGreen.Height = 23;
-            cPicker2ColorGreen.Background = Brushes.Green;
-            cPicker2ColorGreen.Visibility = Visibility.Hidden;
-            cPicker2ColorGreen.MouseDown += cPicker2Select_MouseDown;
+            // player2 green
+            cPicker2ColorGreen = createColorPickerCanvas(Brushes.Green, 315, 45, 0, 0, cPicker2Select_MouseDown);
             picker2List.Add(cPicker2ColorGreen);
             gMainGrid.Children.Add(cPicker2ColorGreen);
-            cPicker2ColorBlue = new Canvas();
-            cPicker2ColorBlue.HorizontalAlignment = HorizontalAlignment.Left;
-            cPicker2ColorBlue.Margin = new Thickness(340, 45, 0, 0);
-            cPicker2ColorBlue.VerticalAlignment = VerticalAlignment.Top;
-            cPicker2ColorBlue.Width = 20;
-            cPicker2ColorBlue.Height = 23;
-            cPicker2ColorBlue.Background = Brushes.Blue;
-            cPicker2ColorBlue.Visibility = Visibility.Hidden;
-            cPicker2ColorBlue.MouseDown += cPicker2Select_MouseDown;
+            // player2 blue
+            cPicker2ColorBlue = createColorPickerCanvas(Brushes.Blue, 340, 45, 0, 0, cPicker2Select_MouseDown);
             picker2List.Add(cPicker2ColorBlue);
             gMainGrid.Children.Add(cPicker2ColorBlue);
             
             
             
+        }
+
+        private Canvas createColorPickerCanvas(SolidColorBrush color, double left, double top, double right, double bottom, MouseButtonEventHandler eventHandler)
+        {
+            Canvas c = new Canvas();
+            c.HorizontalAlignment = HorizontalAlignment.Left;
+            c.Margin = new Thickness(left, top, right, bottom);
+            c.VerticalAlignment = VerticalAlignment.Top;
+            c.Width = 20;
+            c.Height = 23;
+            c.Background = color;
+            c.Visibility = Visibility.Hidden;
+            c.MouseDown += eventHandler;
+
+            return c;
         }
 
         private void bStart_Click(object sender, RoutedEventArgs e)
