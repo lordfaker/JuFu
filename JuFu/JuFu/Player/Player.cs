@@ -10,7 +10,7 @@ namespace JuFu.Player
 {
     class Player
     {
-        public List<Monster.Monster> MonsterList = new List<Monster.Monster>();
+        public List<IMonster> MonsterList = new List<IMonster>();
         public string Name;
         public int ID;
         public int ActionsLeft { get; set; }
@@ -42,6 +42,16 @@ namespace JuFu.Player
             this.Name = name;
             this.ID = iD;
             this.ActionsLeft = 3;
+        }
+
+        public bool CanAct()
+        {
+            return (ActionsLeft > 0) ? true : false;
+        }
+
+        public void Act()
+        {
+            ActionsLeft--;
         }
 
         public void DeselectAll()

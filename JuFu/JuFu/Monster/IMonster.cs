@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JuFu.Arena;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace JuFu.Monster
     interface IMonster
     {
         bool CanMove();
+
+        void Move(Field nextTarget);
 
         void Fight();
 

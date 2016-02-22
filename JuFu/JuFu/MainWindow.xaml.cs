@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using JuFu.Controller;
+using JuFu.Monster;
 
 namespace JuFu
 {
@@ -142,35 +143,22 @@ namespace JuFu
                     if (result.VisualHit is Rectangle)
                     {
                         Rectangle item = (Rectangle)result.VisualHit;
-                        if (item.Parent is Monster.Monster)
+                        if (item.Parent is AbstractMonster)
                         {
-                            Monster.Monster monster = (Monster.Monster)item.Parent;
+                            AbstractMonster monster = (AbstractMonster)item.Parent;
 
                             if (!monster.Selected)
                             {
-                                if (controller.SelectMonster(monster))
-                                {
-                                    if (!bMove.IsEnabled)
-                                        bMove.IsEnabled = true;
-                                    if (!bFight.IsEnabled)
-                                        bFight.IsEnabled = true;
-                                }
+                                controller.SelectMonster(monster);
                             }
                         }
                         else
                         {
                             controller.SelectMonster(null);
-
-                            if (bMove.IsEnabled)
-                                bMove.IsEnabled = false;
-                            if (bFight.IsEnabled)
-                                bFight.IsEnabled = false;
                         }
                     }
                 }
-                //controller.SelectMonster(e.GetPosition((Canvas)sender));
             }
-
         }
 
         private void switchVisibility(List<Canvas> list)

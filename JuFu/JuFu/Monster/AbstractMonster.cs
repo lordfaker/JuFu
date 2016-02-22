@@ -50,6 +50,21 @@ namespace JuFu.Monster
             }
         }
 
+        public void Move(Field nextTarget)
+        {
+            if (nextTarget == null)
+                throw new NotImplementedException("Field target must not be null.");
+
+            if (this.CurrentField == null)
+                throw new NotImplementedException("CurrentField must not be null.");
+
+            this.CurrentField.Children.Remove(this);
+            this.CurrentField.IsSet = false;
+            this.CurrentField = this.TargetField;
+            this.CurrentField.AddChildren(this);
+            this.TargetField = nextTarget;
+        }
+
 
         /// <summary>
         /// Get monster from and target field and calculate

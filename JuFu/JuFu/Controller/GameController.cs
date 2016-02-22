@@ -23,9 +23,10 @@ namespace JuFu.Controller
         public int RoundsPlayed;
         //public bool PlayerOneTurn; NEINNEINEINEINEINTAUSEND!
         Pitch[] pitchLevel = new Pitch[PITCH_Y];
-        public int CurrentPlayerID { get; set; }
+        //private int CurrentPlayerID { get; set; }
+        private Player.Player CurrentPlayer { get; set; }
 
-        public Monster.Monster selectedMonster { get; set; }
+        public IMonster selectedMonster { get; set; }
         public MainWindow parentWindow { get; set; }
 
         public GameController(MainWindow parentWindow, string playerOne, string PlayerTwo)
@@ -45,9 +46,7 @@ namespace JuFu.Controller
             if (this.parentWindow == null)
                 throw new NotImplementedException("GameController.parentWindow must be set.");
 
-            
-
-            CurrentPlayerID = 1;
+            CurrentPlayer = Player1;
 
             // Create pitch, Add monster
             double margin = 0.0d;
@@ -66,6 +65,9 @@ namespace JuFu.Controller
 
         public void Move()
         {
+            if (!CurrentPlayer.CanAct())
+                return; //Perhaps show some kind of message or throw an exception
+
             if (selectedMonster != null)
             {
                 if (selectedMonster.CanMove())
@@ -73,7 +75,7 @@ namespace JuFu.Controller
                     Pitch pitch = null;
                     foreach(var pi in pitchLevel)
                     {
-                        if (pi == selectedMonster.CurrentField.Parent)
+                        if (pi == ((AbstractMonster)selectedMonster).CurrentField.Parent)
                         {
                             pitch = pi;
                         }
@@ -82,21 +84,18 @@ namespace JuFu.Controller
                     if (pitch == null)
                         throw new Exception("Pitch not found");
 
-                    selectedMonster.CurrentField.Children.Remove(selectedMonster);
-                    selectedMonster.CurrentField.IsSet = false;
-                    selectedMonster.CurrentField = selectedMonster.TargetField;
-                    selectedMonster.CurrentField.AddChildren(selectedMonster);
-
-                    switch (CurrentPlayerID)
+                    switch (CurrentPlayer.ID)
                     {
                         case 1:
-                            selectedMonster.TargetField = pitch.FieldArray[selectedMonster.CurrentField.Index + 1];
+                            selectedMonster.Move(pitch.FieldArray[((AbstractMonster)selectedMonster).CurrentField.Index + 1]);
                             break;
                         case 2:
-                            selectedMonster.TargetField = pitch.FieldArray[selectedMonster.CurrentField.Index - 1];
+                            selectedMonster.Move(pitch.FieldArray[((AbstractMonster)selectedMonster).CurrentField.Index - 1]);
                             break;
                         default: break;
                     }
+
+                    CurrentPlayer.Act();
 
                     RoundsPlayed++; // what is this var used for?
 
@@ -110,24 +109,43 @@ namespace JuFu.Controller
             {
                 throw new NotImplementedException("selectedMonster must not be null!");
             }
-            
-            /*RoundsPlayed++;
-            Monster.Monster monster = this.Player1.MonsterList[0];
+        }
+
+        public void Fight()
+        {
+            if (!CurrentPlayer.CanAct())
+                return; //perhaps show some kind of message or throw an exception
 
 
-            Console.WriteLine("Object {0}", Player1.MonsterList[0].GetType());
-            monster = Player1.MonsterList[0];
-            Console.WriteLine("Target field: {0}", monster.CurrentField.Index);
-            monster.TargetField = pitchLevel[0].FieldArray[monster.CurrentField.Index + 1];
-            monster.CurrentField = pitchLevel[0].FieldArray[monster.CurrentField.Index];
-            if (monster.CanMove())
-            { 
-                Console.WriteLine("Target field: {0}", monster.TargetField.Index);
-                monster.CurrentField.Children.Remove(monster);
-                monster.TargetField.AddChildren(monster);
+        }
 
-                monster.CurrentField.Index++;
-            }*/
+        private void UpdateRound()
+        {
+
+
+            UpdateButtons();
+            //UpdateVisuals();
+        }
+
+        private void UpdateButtons()
+        {
+            if (CurrentPlayer.CanAct())
+            {
+                parentWindow.bMove.IsEnabled = (selectedMonster != null) ? true : false;
+                parentWindow.bFight.IsEnabled = (selectedMonster != null && ((AbstractMonster)selectedMonster).TargetField.IsSet) ? true : false;
+                // update end round button?
+            }
+            else
+            {
+                parentWindow.bMove.IsEnabled = false;
+                parentWindow.bFight.IsEnabled = false;
+                // enable end round button
+            }
+        }
+
+        private void UpdateLabels()
+        {
+
         }
 
         public void Checkfield(Field f)
@@ -135,11 +153,11 @@ namespace JuFu.Controller
             Field field = f;
         }
 
-        public bool SelectMonster(Monster.Monster m)
+        public void SelectMonster(AbstractMonster m)
         {
             if (m != null)
             {
-                if (m.Player.ID == CurrentPlayerID)
+                if (m.Player.ID == CurrentPlayer.ID)
                 {
                     if (!m.Selected)
                     {
@@ -147,42 +165,32 @@ namespace JuFu.Controller
 
                         m.Select();
                         this.selectedMonster = m;
-
-                        return true;
                     }
                 }
             }
             else
             {
-                switch (CurrentPlayerID)
-                {
-                    case 1: Player1.DeselectAll();
-                        break;
-                    case 2: Player2.DeselectAll();
-                        break;
-                    default: break;
-                }
+                CurrentPlayer.DeselectAll();
                 this.selectedMonster = null;
             }
 
-            return false;
+            UpdateButtons();
         }
-
         
 
         private void changePlayer()
         {
-            if (CurrentPlayerID == 1)
+            if (CurrentPlayer.ID == 1)
             {
-                CurrentPlayerID = 2;
-                parentWindow.lPlayerTurnNumber.Content = CurrentPlayerID;
-                parentWindow.lPlayerTurnNumber.Foreground = Player2.color;
+                CurrentPlayer = Player2;
+                parentWindow.lPlayerTurnNumber.Content = CurrentPlayer.ID;
+                parentWindow.lPlayerTurnNumber.Foreground = CurrentPlayer.color;
             }
             else
             {
-                CurrentPlayerID = 1;
-                parentWindow.lPlayerTurnNumber.Content = CurrentPlayerID;
-                parentWindow.lPlayerTurnNumber.Foreground = Player1.color;
+                CurrentPlayer.ID = 1;
+                parentWindow.lPlayerTurnNumber.Content = CurrentPlayer.ID;
+                parentWindow.lPlayerTurnNumber.Foreground = CurrentPlayer.color;
             }
         }
 
