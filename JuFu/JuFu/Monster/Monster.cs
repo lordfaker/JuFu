@@ -64,6 +64,8 @@ namespace JuFu.Monster
         {
             base.Die();
 
+            this.CurrentField.RemoveChild(this);
+            this.Rectangle.Visibility = Visibility.Hidden;
 
         }
 

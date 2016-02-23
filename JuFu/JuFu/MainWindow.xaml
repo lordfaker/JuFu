@@ -22,16 +22,18 @@
         <Button x:Name="bMove" Content="Move" HorizontalAlignment="Left" Margin="432,73,0,0" VerticalAlignment="Top" Width="75" Click="bMove_Click"/>
         <Button x:Name="bFight" Content="Fight" HorizontalAlignment="Left" Margin="432,98,0,0" VerticalAlignment="Top" Width="75" Click="bFight_Click"/>
         <Label x:Name="lActionsLeft" Content="Actions left:" HorizontalAlignment="Left" Margin="265,72,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lActionsLeftNumber" Content="3" HorizontalAlignment="Left" Margin="411,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber" Content="" HorizontalAlignment="Left" Margin="411,72,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lActionsLeft_Copy" Content="Monster 1 health:" HorizontalAlignment="Left" Margin="265,100,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lActionsLeftNumber_Copy" Content="5" HorizontalAlignment="Left" Margin="411,100,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber_Copy" Content="" HorizontalAlignment="Left" Margin="397,100,0,0" VerticalAlignment="Top" Width="30"/>
         <Label x:Name="lActionsLeft_Copy1" Content="Monster 2 health:" HorizontalAlignment="Left" Margin="265,131,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lActionsLeftNumber_Copy1" Content="5" HorizontalAlignment="Left" Margin="411,131,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber_Copy1" Content="" HorizontalAlignment="Left" Margin="397,131,0,0" VerticalAlignment="Top" Width="30"/>
         <Label x:Name="lActionsLeft_Copy2" Content="Monster 3 health:" HorizontalAlignment="Left" Margin="265,162,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lActionsLeftNumber_Copy2" Content="5" HorizontalAlignment="Left" Margin="411,162,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber_Copy2" Content="" HorizontalAlignment="Left" Margin="397,162,0,0" VerticalAlignment="Top" Width="30"/>
         <Label x:Name="lActionsLeft_Copy3" Content="Monster 4 health:" HorizontalAlignment="Left" Margin="265,193,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lActionsLeftNumber_Copy3" Content="5" HorizontalAlignment="Left" Margin="411,193,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lActionsLeftNumber_Copy3" Content="" HorizontalAlignment="Left" Margin="397,193,0,0" VerticalAlignment="Top" Width="30"/>
         <Canvas x:Name="cPlayer1Color" HorizontalAlignment="Left" Height="23" Margin="240,13,0,0" VerticalAlignment="Top" Width="20" MouseDown="cPlayer1Color_MouseDown"/>
         <Canvas x:Name="cPlayer2Color" HorizontalAlignment="Left" Height="23" Margin="240,45,0,0" VerticalAlignment="Top" Width="20" MouseDown="cPlayer2Color_MouseDown"/>
+        <Button x:Name="bEndRound" Content="End round" HorizontalAlignment="Left" Margin="432,238,0,0" VerticalAlignment="Top" Width="75" Height="21" Click="bEndRound_Click" Visibility="Hidden"/>
+        <TextBox x:Name="tWinner" HorizontalAlignment="Left" Height="84" Margin="160,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontFamily="Segoe Print" FontSize="18.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden"/>
     </Grid>
 </Window>

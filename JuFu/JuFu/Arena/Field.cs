@@ -33,6 +33,13 @@ namespace JuFu.Arena
             base.Children.Add(rectangle);
         }
 
+        public void RemoveChild(UIElement uiElement)
+        {
+            IsSet = false;
+            this.Monster = null;
+            base.Children.Remove(uiElement);
+        }
+
         public void AddChildren(UIElement uiElement)
         {
             IsSet = true;

@@ -13,7 +13,6 @@ namespace JuFu.Monster
 {
     abstract class AbstractMonster : Canvas, IMonster 
     {
-        public Point Position { get; set; }
         public int Strength { get; set; }
         public int Health { get; set; }
         public bool Moved;
@@ -37,17 +36,21 @@ namespace JuFu.Monster
         public virtual bool CanMove()
         {
             if (this.TargetField == null)
-                throw new NotImplementedException("TargetField must not be null.");
+                return false;
 
             if (this.TargetField.IsSet)
             {
                 return false;
-
             }
             else
             {
                 return true;
             }
+        }
+
+        public virtual bool HasTarget()
+        {
+            return (this.TargetField != null && this.TargetField.IsSet) ? true : false;
         }
 
         public void Move(Field nextTarget)
@@ -58,11 +61,11 @@ namespace JuFu.Monster
             if (this.CurrentField == null)
                 throw new NotImplementedException("CurrentField must not be null.");
 
-            this.CurrentField.Children.Remove(this);
-            this.CurrentField.IsSet = false;
+            this.CurrentField.RemoveChild(this);
             this.CurrentField = this.TargetField;
             this.CurrentField.AddChildren(this);
-            this.TargetField = nextTarget;
+
+            this.TargetField = (this.CurrentField != nextTarget) ? nextTarget : null;
         }
 
 
@@ -72,13 +75,11 @@ namespace JuFu.Monster
         /// </summary>
         public void Fight()
         {
-            Monster enemyMonster = TargetField.Monster;
-            int enemyHealth = enemyMonster.Health;
-            int enemyStrength = enemyMonster.Strength;
+            Monster enemyMonster = this.TargetField.Monster;
 
             // Let's fight...
-            enemyHealth -= this.Strength;
-            if (enemyHealth <= 0) enemyMonster.Die();
+            enemyMonster.Health -= this.Strength;
+            if (enemyMonster.Health <= 0) enemyMonster.Die();
         }
 
         /// <summary>

@@ -29,6 +29,9 @@ namespace JuFu.Controller
         public IMonster selectedMonster { get; set; }
         public MainWindow parentWindow { get; set; }
 
+        private bool gameOver = false;
+        private string Winner;
+
         public GameController(MainWindow parentWindow, string playerOne, string PlayerTwo)
         {
             // Create new instances of player - objects, assign name
@@ -44,9 +47,11 @@ namespace JuFu.Controller
         public void Start(Canvas canvasPitch)
         {
             if (this.parentWindow == null)
-                throw new NotImplementedException("GameController.parentWindow must be set.");
+                throw new NotImplementedException("GameController.parentWindow must not be null.");
 
             CurrentPlayer = Player1;
+            gameOver = false;
+            Winner = null;
 
             // Create pitch, Add monster
             double margin = 0.0d;
@@ -58,7 +63,9 @@ namespace JuFu.Controller
                 margin += 50.0d;
             }
 
-            parentWindow.lPlayerTurnNumber.Foreground = Player1.color;
+            parentWindow.bEndRound.Visibility = Visibility.Visible;
+            parentWindow.tWinner.Visibility = Visibility.Hidden;
+            UpdateRound();
         }
 
 
@@ -75,7 +82,7 @@ namespace JuFu.Controller
                     Pitch pitch = null;
                     foreach(var pi in pitchLevel)
                     {
-                        if (pi == ((AbstractMonster)selectedMonster).CurrentField.Parent)
+                        if (pi == ((Monster.Monster)selectedMonster).CurrentField.Parent)
                         {
                             pitch = pi;
                         }
@@ -84,16 +91,21 @@ namespace JuFu.Controller
                     if (pitch == null)
                         throw new Exception("Pitch not found");
 
-                    switch (CurrentPlayer.ID)
+                    // TODO: Add check for array out of bounds.
+                    Field moveTo = null;
+                    try
                     {
-                        case 1:
-                            selectedMonster.Move(pitch.FieldArray[((AbstractMonster)selectedMonster).CurrentField.Index + 1]);
-                            break;
-                        case 2:
-                            selectedMonster.Move(pitch.FieldArray[((AbstractMonster)selectedMonster).CurrentField.Index - 1]);
-                            break;
-                        default: break;
+                        moveTo = (CurrentPlayer.ID == 1) ? pitch.FieldArray[((Monster.Monster)selectedMonster).CurrentField.Index + 2] : pitch.FieldArray[((Monster.Monster)selectedMonster).CurrentField.Index - 2];
+                    } catch (IndexOutOfRangeException e)
+                    {
+                        try
+                        {
+                            moveTo = (CurrentPlayer.ID == 1) ? pitch.FieldArray[((Monster.Monster)selectedMonster).CurrentField.Index + 1] : pitch.FieldArray[((Monster.Monster)selectedMonster).CurrentField.Index - 1];
+                        } catch (IndexOutOfRangeException e1) {}
                     }
+
+
+                    selectedMonster.Move(moveTo);
 
                     CurrentPlayer.Act();
 
@@ -109,6 +121,8 @@ namespace JuFu.Controller
             {
                 throw new NotImplementedException("selectedMonster must not be null!");
             }
+
+            UpdateRound();
         }
 
         public void Fight()
@@ -116,36 +130,102 @@ namespace JuFu.Controller
             if (!CurrentPlayer.CanAct())
                 return; //perhaps show some kind of message or throw an exception
 
+            selectedMonster.Fight();
+            CurrentPlayer.Act();
 
+            UpdateRound();
+        }
+
+        private void CheckWinningCondition()
+        {
+            List<bool> oneMonster = new List<bool>();
+            foreach (var p in pitchLevel)
+            {
+                int monsterCount = 0;
+                foreach (var f in p.FieldArray)
+                {
+                    if (f.Monster != null)
+                        monsterCount++;
+                }
+
+                oneMonster.Add((monsterCount > 1) ? false : true);
+            }
+
+            bool winnerPossible = true;
+
+            foreach (var b in oneMonster)
+            {
+                if (!b) winnerPossible = false;
+            }
+
+            if (winnerPossible)
+                CalculateWinner();
+        }
+
+        private void CalculateWinner()
+        {
+            int playerOneHealth = 0;
+            int playerTwoHealth = 0;
+
+            foreach (var p in pitchLevel)
+            {
+                foreach (var f in p.FieldArray)
+                {
+                    if (f.Monster != null)
+                    {
+                        if (f.Monster.Player.ID == 1)
+                        {
+                            playerOneHealth += f.Monster.Health;
+                        }
+                        else
+                        {
+                            playerTwoHealth += f.Monster.Health;
+                        }
+                    }
+                }
+            }
+
+            Winner = (playerOneHealth > playerTwoHealth) ? Player1.Name : Player2.Name;
+            //Console.WriteLine("And the WINNER IIIIIIS: " + winner + "!!!!");
+            gameOver = true;
         }
 
         private void UpdateRound()
         {
-
-
+            CheckWinningCondition();
             UpdateButtons();
-            //UpdateVisuals();
+            UpdateLabels();
+
         }
 
         private void UpdateButtons()
         {
-            if (CurrentPlayer.CanAct())
-            {
-                parentWindow.bMove.IsEnabled = (selectedMonster != null) ? true : false;
-                parentWindow.bFight.IsEnabled = (selectedMonster != null && ((AbstractMonster)selectedMonster).TargetField.IsSet) ? true : false;
-                // update end round button?
-            }
-            else
-            {
-                parentWindow.bMove.IsEnabled = false;
-                parentWindow.bFight.IsEnabled = false;
-                // enable end round button
-            }
+            parentWindow.bMove.IsEnabled = (!gameOver && CurrentPlayer.CanAct() && selectedMonster != null && ((Monster.Monster)selectedMonster).CanMove()) ? true : false;
+            parentWindow.bFight.IsEnabled = (!gameOver && CurrentPlayer.CanAct() && selectedMonster != null && ((Monster.Monster)selectedMonster).HasTarget()) ? true : false;
+            parentWindow.bStart.Content = (gameOver) ? "Restart" : "Start";
+            parentWindow.bEndRound.Visibility = (gameOver) ? Visibility.Hidden : Visibility.Visible;
         }
 
         private void UpdateLabels()
         {
+            if (gameOver)
+            {
+                parentWindow.tWinner.Text = "Winner: " + Winner;
+                parentWindow.tWinner.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                parentWindow.lActionsLeftNumber.Content = CurrentPlayer.ActionsLeft;
 
+                for (int i = 0; i < CurrentPlayer.MonsterList.Count; i++)
+                {
+                    parentWindow.healthLabels[i].Content = CurrentPlayer.MonsterList.ElementAt(i).Health;
+                }
+
+                parentWindow.lPlayerTurnNumber.Content = CurrentPlayer.ID;
+                parentWindow.lPlayerTurnNumber.Foreground = CurrentPlayer.color;
+            }
+            
         }
 
         public void Checkfield(Field f)
@@ -153,7 +233,14 @@ namespace JuFu.Controller
             Field field = f;
         }
 
-        public void SelectMonster(AbstractMonster m)
+        public void EndRound()
+        {
+            this.SelectMonster(null);
+            changePlayer();
+            UpdateRound();
+        }
+
+        public void SelectMonster(Monster.Monster m)
         {
             if (m != null)
             {
@@ -180,18 +267,8 @@ namespace JuFu.Controller
 
         private void changePlayer()
         {
-            if (CurrentPlayer.ID == 1)
-            {
-                CurrentPlayer = Player2;
-                parentWindow.lPlayerTurnNumber.Content = CurrentPlayer.ID;
-                parentWindow.lPlayerTurnNumber.Foreground = CurrentPlayer.color;
-            }
-            else
-            {
-                CurrentPlayer.ID = 1;
-                parentWindow.lPlayerTurnNumber.Content = CurrentPlayer.ID;
-                parentWindow.lPlayerTurnNumber.Foreground = CurrentPlayer.color;
-            }
+            CurrentPlayer = (CurrentPlayer.ID == 1) ? Player2 : Player1;
+            CurrentPlayer.ActionsLeft = 3;
         }
 
     }

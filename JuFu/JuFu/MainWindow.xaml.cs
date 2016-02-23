@@ -33,6 +33,7 @@ namespace JuFu
         private Canvas cPicker2ColorBlue;
         private List<Canvas> picker1List;
         private List<Canvas> picker2List;
+        public Label[] healthLabels;
 
         public MainWindow()
         {
@@ -83,9 +84,12 @@ namespace JuFu
             cPicker2ColorBlue = createColorPickerCanvas(Brushes.Blue, 340, 45, 0, 0, cPicker2Select_MouseDown);
             picker2List.Add(cPicker2ColorBlue);
             gMainGrid.Children.Add(cPicker2ColorBlue);
-            
-            
-            
+
+            healthLabels = new Label[4];
+            healthLabels[0] = lActionsLeftNumber_Copy;
+            healthLabels[1] = lActionsLeftNumber_Copy1;
+            healthLabels[2] = lActionsLeftNumber_Copy2;
+            healthLabels[3] = lActionsLeftNumber_Copy3;
         }
 
         private Canvas createColorPickerCanvas(SolidColorBrush color, double left, double top, double right, double bottom, MouseButtonEventHandler eventHandler)
@@ -129,7 +133,7 @@ namespace JuFu
 
         private void bFight_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.Fight();
         }
 
         private void CanvasPitch_MouseDown(object sender, MouseButtonEventArgs e)
@@ -143,9 +147,9 @@ namespace JuFu
                     if (result.VisualHit is Rectangle)
                     {
                         Rectangle item = (Rectangle)result.VisualHit;
-                        if (item.Parent is AbstractMonster)
+                        if (item.Parent is Monster.Monster)
                         {
-                            AbstractMonster monster = (AbstractMonster)item.Parent;
+                            Monster.Monster monster = (Monster.Monster)item.Parent;
 
                             if (!monster.Selected)
                             {
@@ -213,6 +217,11 @@ namespace JuFu
         private void cPlayer2Color_MouseDown(object sender, MouseButtonEventArgs e)
         {
             switchVisibility(picker2List);
+        }
+
+        private void bEndRound_Click(object sender, RoutedEventArgs e)
+        {
+            controller.EndRound();
         }
     }
 }
